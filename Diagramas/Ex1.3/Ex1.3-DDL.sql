@@ -1,0 +1,56 @@
+-- DDL
+
+CREATE DATABASE Ex1_3;
+
+USE Ex1_3;
+
+CREATE TABLE Clinic
+(
+	ClinicId INT PRIMARY KEY IDENTITY,
+	ClinicName VARCHAR(20) NOT NULL,
+	ClinicAddress VARCHAR NOT NULL,
+)
+
+CREATE TABLE [Owner]
+(
+	OwnerId INT PRIMARY KEY IDENTITY,
+	OwnerName VARCHAR NOT NULL
+)
+
+CREATE TABLE PetType
+(
+	PetTypeId INT PRIMARY KEY IDENTITY,
+	PetTypeName VARCHAR(20) NOT NULL
+)
+
+CREATE TABLE AnimalBreed
+(
+	AnimalBreedId INT PRIMARY KEY IDENTITY,
+	AnimalBreedName VARCHAR(20) NOT NULL
+)
+
+CREATE TABLE Veterinarian
+(
+	VeterinarianId INT PRIMARY KEY IDENTITY,
+	ClinicId INT FOREIGN KEY REFERENCES Clinic(ClinicId),
+	VeterinarianName VARCHAR(30) NOT NULL
+);
+
+CREATE TABLE Pet
+(
+	PetId INT PRIMARY KEY IDENTITY,
+	OwnerId INT FOREIGN KEY REFERENCES [Owner](OwnerId),
+	PetTypeId INT FOREIGN KEY REFERENCES PetType(PetTypeId),
+	AnimalBreed INT FOREIGN KEY REFERENCES AnimalBreed(AnimalBreedId),
+	PetName VARCHAR(30) NOT NULL,
+	BirthDate DATE NOT NULL
+);
+
+CREATE TABLE Consultation
+(
+	ConsultationId INT PRIMARY KEY IDENTITY,
+	VeterinarianId INT FOREIGN KEY REFERENCES Veterinarian(VeterinarianId),
+	PetId INT FOREIGN KEY REFERENCES Pet(PetId),
+	ConsultationDescription VARCHAR NOT NULL,
+	ConsultationDate DATE NOT NULL
+);
