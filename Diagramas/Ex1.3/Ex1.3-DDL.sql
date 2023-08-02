@@ -8,13 +8,13 @@ CREATE TABLE Clinic
 (
 	ClinicId INT PRIMARY KEY IDENTITY,
 	ClinicName VARCHAR(20) NOT NULL,
-	ClinicAddress VARCHAR NOT NULL,
+	ClinicAddress VARCHAR(50) NOT NULL,
 )
 
 CREATE TABLE [Owner]
 (
 	OwnerId INT PRIMARY KEY IDENTITY,
-	OwnerName VARCHAR NOT NULL
+	OwnerName VARCHAR(30) NOT NULL
 )
 
 CREATE TABLE PetType
@@ -32,16 +32,16 @@ CREATE TABLE AnimalBreed
 CREATE TABLE Veterinarian
 (
 	VeterinarianId INT PRIMARY KEY IDENTITY,
-	ClinicId INT FOREIGN KEY REFERENCES Clinic(ClinicId),
+	ClinicId INT FOREIGN KEY REFERENCES Clinic(ClinicId) NOT NULL,
 	VeterinarianName VARCHAR(30) NOT NULL
 );
 
 CREATE TABLE Pet
 (
 	PetId INT PRIMARY KEY IDENTITY,
-	OwnerId INT FOREIGN KEY REFERENCES [Owner](OwnerId),
-	PetTypeId INT FOREIGN KEY REFERENCES PetType(PetTypeId),
-	AnimalBreed INT FOREIGN KEY REFERENCES AnimalBreed(AnimalBreedId),
+	OwnerId INT FOREIGN KEY REFERENCES [Owner](OwnerId) NOT NULL,
+	PetTypeId INT FOREIGN KEY REFERENCES PetType(PetTypeId) NOT NULL,
+	AnimalBreed INT FOREIGN KEY REFERENCES AnimalBreed(AnimalBreedId) NOT NULL,
 	PetName VARCHAR(30) NOT NULL,
 	BirthDate DATE NOT NULL
 );
@@ -49,8 +49,8 @@ CREATE TABLE Pet
 CREATE TABLE Consultation
 (
 	ConsultationId INT PRIMARY KEY IDENTITY,
-	VeterinarianId INT FOREIGN KEY REFERENCES Veterinarian(VeterinarianId),
-	PetId INT FOREIGN KEY REFERENCES Pet(PetId),
-	ConsultationDescription VARCHAR NOT NULL,
+	VeterinarianId INT FOREIGN KEY REFERENCES Veterinarian(VeterinarianId) NOT NULL,
+	PetId INT FOREIGN KEY REFERENCES Pet(PetId) NOT NULL,
+	ConsultationDescription VARCHAR(200) NOT NULL,
 	ConsultationDate DATE NOT NULL
 );
