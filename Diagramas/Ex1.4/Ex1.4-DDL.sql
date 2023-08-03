@@ -34,4 +34,14 @@ CREATE TABLE Album
 	AlbumLocation VARCHAR(30) NOT NULL,
 	AlbumMinutesDuration SMALLINT NOT NULL,
 	AlbumIsActive BIT NOT NULL
-)
+);
+
+CREATE TABLE AlbumMusicStyle
+(
+	AlbumMusicStyleId INT PRIMARY KEY IDENTITY,
+	AlbumId INT FOREIGN KEY REFERENCES Album(AlbumId) NOT NULL,
+	MusicStyleId INT FOREIGN KEY REFERENCES MusicStyle(MusicStyleId) NOT NULL
+);
+
+DROP TABLE AlbumMusicStyle;
+DROP TABLE Album;

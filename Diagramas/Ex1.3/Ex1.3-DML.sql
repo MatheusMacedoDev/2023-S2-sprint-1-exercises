@@ -8,6 +8,16 @@ SELECT * FROM Veterinarian;
 SELECT * FROM Pet;
 SELECT * FROM Consultation;
 
+SELECT 
+	Consultation.ConsultationId,
+	Consultation.ConsultationDescription,
+	Consultation.ConsultationDate,
+	Veterinarian.VeterinarianName AS Veterinarian
+
+FROM 
+	Consultation JOIN Veterinarian 
+ON Consultation.VeterinarianId = Veterinarian.VeterinarianId;
+
 -- DML
 
 INSERT INTO Clinic(ClinicName, ClinicAddress)
@@ -32,6 +42,14 @@ INSERT INTO Veterinarian(ClinicId, VeterinarianName)
 VALUES 
 	(1, 'Pedro Rocha'),
 	(1, 'Yuri Marsal');
+
+UPDATE Veterinarian
+SET CRMV = '12837593857'
+WHERE VeterinarianId = 1;
+
+UPDATE Veterinarian
+SET CRMV = '63746274837'
+WHERE VeterinarianId = 2;
 
 INSERT INTO Pet(OwnerId, PetTypeId, AnimalBreed, PetName, BirthDate)
 VALUES

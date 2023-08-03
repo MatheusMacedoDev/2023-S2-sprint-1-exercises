@@ -9,25 +9,25 @@ CREATE TABLE Clinic
 	ClinicId INT PRIMARY KEY IDENTITY,
 	ClinicName VARCHAR(20) NOT NULL,
 	ClinicAddress VARCHAR(50) NOT NULL,
-)
+);
 
 CREATE TABLE [Owner]
 (
 	OwnerId INT PRIMARY KEY IDENTITY,
 	OwnerName VARCHAR(30) NOT NULL
-)
+);
 
 CREATE TABLE PetType
 (
 	PetTypeId INT PRIMARY KEY IDENTITY,
 	PetTypeName VARCHAR(20) NOT NULL
-)
+);
 
 CREATE TABLE AnimalBreed
 (
 	AnimalBreedId INT PRIMARY KEY IDENTITY,
 	AnimalBreedName VARCHAR(20) NOT NULL
-)
+);
 
 CREATE TABLE Veterinarian
 (
@@ -54,3 +54,6 @@ CREATE TABLE Consultation
 	ConsultationDescription VARCHAR(200) NOT NULL,
 	ConsultationDate DATE NOT NULL
 );
+
+ALTER TABLE VETERINARIAN
+	ADD CRMV CHAR(11);
